@@ -1,0 +1,17 @@
+
+{
+"data":[
+    {
+        "username":"admin@123gmail.com",
+        "password":"admin123"
+
+    },
+    {
+        "username":"admin@123456gmail.com",
+        "password":"admin123456"
+
+    }
+]
+}
+
+
