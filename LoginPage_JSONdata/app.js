@@ -1,11 +1,11 @@
-let form=document.getElementById("loginform");
-form.addEventListener('click',btnEventHandler);
-function btnEventHandler(){
-    fetch('./data.json',)
-       .then(res=>  res.json())
-       .then(data=>{
-        console.log(data)
-       } )
+// let form=document.getElementById("loginform");
+// form.addEventListener('click',btnEventHandler);
+// function btnEventHandler(){
+//     fetch('./data.json',)
+//        .then(res=>  res.json())
+//        .then(data=>{
+//         console.log(data)
+//        } )
 //     const formE1=document.querySelector('.form');
 //     formE1.addEventListener('submit', event=>{
 //     const formData= new formData(form);
@@ -20,4 +20,4 @@ function btnEventHandler(){
 //     console.log(res)
 //   .then(data=>console.log(data))
 //     });
-    }
+//     }
