@@ -1,52 +1,24 @@
 <?php
-$host="localhost";
-$user="root";
-$password="";
-$db="loginform";
-mysql_connect($host,$user,$password);
-mysql_select_db($db);
- if(isset($_POST['username'])){
-    $uname=$_POST['username'];
-    $password=$_POST['password'];
-
-    $sql="SELECT * from loginform WHERE username='".$uname."' AND password='".$password."'limit 1";
-    $result=mysql_query($sql);
-    if(mysql_num_rows($result==1)){
-        echo " Logged in succesfully";
-        exit();
+$email=$_POST['email'];
+$password=$_POST['password'];
+$con = mysqli_connect("localhost", "root", "","loginform" );
+if($con->connect_error){
+    die('Failed to connect:'.$con->connect_error);
+}else{
+    $stmt=$con->prepare("select * from loginform where email= ?");
+    $stmt->bind_param("s",$email);
+    $stmt->execute();
+    $stmt_result=$stmt->get_result();
+    if($stmt_result->num_rows > 0){
+        $data=$stmt_result->fetch_assoc();
+        if($data['password']===$password){
+            echo"<h3>login successfull</h3>";
+        }else {
+            echo"<h3>invalid email or password</h3>";
+        }
+    }else{
+        echo"<h2> Invalid email or password</h2>";
     }
-    else{
-        echo "wrong password";
-        exit();
-
-    }
- }
+}
+ 
  ?>
-<!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Login Page</title>
-  <link rel="stylesheet" href="./style.css">
-
-</head>
-<body>
-
-<div id="bg"></div>
-
-<form  action="POST" class="form" >
-  <div class="form-field">
-    <input type="email" name="username" placeholder="Email / Username" required/>
-  </div>
-  
-  <div class="form-field">
-    <input type="password" name="password" placeholder="Password" required/>                         </div>
-  
-  <div class="form-field">
-    <button class="btn" type="submit">Log in</button>
-  </div>
-</form>
-
-  <!-- <script src="app.js"></script> -->
-</body>
-</html>
